@@ -18,20 +18,18 @@
 package org.jboss.arquillian.testenricher.osgi;
 
 import org.jboss.arquillian.container.test.spi.RemoteLoadableExtension;
-import org.jboss.arquillian.container.test.spi.client.deployment.AuxiliaryArchiveAppender;
 import org.jboss.arquillian.test.spi.TestEnricher;
 
 /**
- * OSGiEnricherExtension
+ * OSGiRemoteContainerExtension
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @author thomas.diesler@jboss.com
+ * @version $Revision: $
  */
-public class OSGiEnricherExtension implements RemoteLoadableExtension {
+public class OSGiEnricherRemoteExtension implements RemoteLoadableExtension {
     @Override
     public void register(ExtensionBuilder builder) {
         builder.service(TestEnricher.class, OSGiTestEnricher.class);
-        builder.service(AuxiliaryArchiveAppender.class, OSGiAuxiliaryArchiveAppender.class);
     }
 
 }
