@@ -15,25 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.arquillian.container.osgi.embedded;
+package org.jboss.arquillian.protocol.osgi;
 
-import org.jboss.arquillian.container.osgi.OSGiApplicationArchiveProcessor;
-import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
-import org.jboss.arquillian.container.test.spi.client.deployment.ApplicationArchiveProcessor;
-import org.jboss.arquillian.core.spi.LoadableExtension;
+import org.jboss.arquillian.container.test.spi.client.deployment.DeploymentPackager;
+import org.jboss.arquillian.protocol.jmx.AbstractJMXProtocol;
+
 
 /**
- * EmbeddedContainerExtension
- * 
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
+ * JMXOSGiProtocol
+ *
  * @author thomas.diesler@jboss.com
+ * @since 21-Apr-2011
  */
-public class EmbeddedContainerExtension implements LoadableExtension {
-    
-    @Override
-    public void register(ExtensionBuilder builder) {
-        builder.service(DeployableContainer.class, EmbeddedDeployableContainer.class);
-        builder.service(ApplicationArchiveProcessor.class, OSGiApplicationArchiveProcessor.class);
-    }
+public class JMXOSGiProtocol extends AbstractJMXProtocol 
+{
 
+   @Override
+   public DeploymentPackager getPackager()
+   {
+      return new OSGiDeploymentPackager();
+   }
+
+   @Override
+   public String getProtocolName()
+   {
+      return "jmx-osgi";
+   }
 }
